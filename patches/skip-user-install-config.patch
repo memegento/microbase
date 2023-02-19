@@ -1,0 +1,17 @@
+Index: vendor/magento/magento2-base/setup/src/Magento/Setup/Model/Installer.php
+IDEA additional info:
+Subsystem: com.intellij.openapi.diff.impl.patch.CharsetEP
+<+>UTF-8
+===================================================================
+diff --git a/vendor/magento/magento2-base/setup/src/Magento/Setup/Model/Installer.php b/vendor/magento/magento2-base/setup/src/Magento/Setup/Model/Installer.php
+--- a/vendor/magento/magento2-base/setup/src/Magento/Setup/Model/Installer.php
++++ b/vendor/magento/magento2-base/setup/src/Magento/Setup/Model/Installer.php	(date 1670151673379)
+@@ -352,7 +352,7 @@
+             'validateRemoteStorageConfiguration',
+             [$request]
+         ];
+-        $script[] = ['Installing user configuration...', 'installUserConfig', [$request]];
++//        $script[] = ['Installing user configuration...', 'installUserConfig', [$request]]; //skip this to make no modules installation possible
+         $script[] = ['Enabling caches:', 'updateCaches', [true]];
+         $script[] = ['Installing data...', 'installDataFixtures', [$request]];
+         if (!empty($request[InstallCommand::INPUT_KEY_SALES_ORDER_INCREMENT_PREFIX])) {

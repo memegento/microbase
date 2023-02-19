@@ -1,0 +1,116 @@
+{
+    "name": "memegento/magento2-base",
+    "description": "Memegento 2 Base",
+    "type": "magento2-component",
+    "version": "2.4.5",
+    "require": {
+        "php": "~7.4.0||~8.1.0",
+        "ext-intl": "*",
+        "ext-mbstring": "*",
+        "magento/magento2-base": "*",
+        "magento/framework": "*",
+        "magento/framework-amqp": "*",
+        "magento/framework-message-queue": "*",
+        "magento/framework-bulk": "*",
+        "colinmollenhour/cache-backend-file": "^1.4",
+        "colinmollenhour/cache-backend-redis": "^1.14",
+        "colinmollenhour/credis": "^1.13",
+        "phpseclib/mcrypt_compat": "~2.0.2",
+        "cweagans/composer-patches": "^1.7"
+    },
+    "autoload": {
+        "exclude-from-classmap": [
+            "**/dev/**",
+            "**/update/**",
+            "**/Test/**"
+        ],
+        "files": [
+            "app/etc/NonComposerComponentRegistration.php"
+        ],
+        "psr-0": {
+            "": [
+                "app/code/",
+                "generated/code/"
+            ]
+        },
+        "psr-4": {
+            "Magento\\": [
+                "app/MemegentoFixes/Magento/",
+                "app/code/Magento/"
+            ],
+            "Magento\\Framework\\": [
+                "vendor/magento/framework",
+                "vendor/magento/magento2-base/lib/internal/Magento/Framework/"
+            ],
+            "Magento\\Setup\\": [
+                "setup/src/Magento/Setup/",
+                "vendor/magento/magento2-base/setup/src/Magento/Setup/"
+            ]
+        }
+    },
+    "config": {
+        "allow-plugins": {
+            "magento/magento-composer-installer": true,
+            "magento/composer-dependency-version-audit-plugin": true,
+            "cweagans/composer-patches": true
+        }
+    },
+    "extra": {
+        "magento-deploystrategy": "copy",
+        "magento-force": true,
+        "magento-deploy-ignore": {
+            "*": [
+                "/index.php",
+                "/.gitignore",
+                "/.auth.json.sample",
+                "/.grunt-config.json.sample",
+                "/.nginx.conf.sample",
+                "/.package.json.sample",
+                "/SECURITY.md",
+                "/Gruntfile.js.sample",
+                "/LICENSE.txt",
+                "/CHANGELOG.md",
+                "/README.md",
+                "/.user.ini",
+                "/COPYING.txt",
+                "/.htaccess.sample",
+                "/LICENSE_AFL.txt",
+                "/.php-cs-fixer.dist.php",
+                "/.htaccess",
+                "/.editorconfig",
+                "/pub/",
+                "/lib/",
+                "/dev/",
+                "/phpserver/",
+                "/app/etc/di.xml",
+                "/app/design/",
+                "/app/i18n/"
+            ]
+        },
+        "chmod": [
+            {
+                "mask": "0755",
+                "path": "bin/magento"
+            }
+        ],
+        "patches": {
+            "magento/magento2-base": {
+                "Skip user fixtures": "patches/skip-user-install-config.patch"
+            }
+        }
+    },
+    "scripts": {
+        "post-update-cmd": [
+            "make cleanbase"
+        ],
+        "post-install-cmd": [
+            "make cleanbase"
+        ]
+    },
+    "repositories": [
+        {
+            "type": "composer",
+            "url": "https://mirror.mage-os.org/"
+        }
+    ]
+}
