@@ -57,6 +57,7 @@ because why not
 
 - Maybe someone will be inspired and will continue to work on this or similar project and can find this PoC usefull
 - Maybe anybody would improve deps of core modules e.g. https://github.com/magento/magento2/pull/30886
+- Maybe you want to optimize `setup:di:compile` or `setup:install` or `setup:upgrade` or other parts, and you do not need the whole codebase.
 - Maybe someone likes Magento's DI, DB schema, Async operations, Modules etc. approach and can use this PoC repo to build their own light apps
 - Maybe you want to rewrite Magento
 - DWTFUW
